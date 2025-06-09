@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAIR CODE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(180deg, #070e20 0%, #0a1433 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #b8c4d9;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 2s ease-out forwards;
+      opacity: 0;
+      width: 100%;
+      max-width: 400px;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 340px;
+      padding: 24px;
+      text-align: center;
+      background: linear-gradient(145deg, #0b153b, #142057);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 0 8px rgba(29, 78, 216, 0.1);
+      border: 1px solid rgba(29, 78, 216, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-6px);
+    }
+
+    #text {
+      color: #b8c4d9;
+    }
+
+    .centered-text {
+      color: #d1dae6;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    h6 {
+      font-size: 0.85rem;
+      color: #7a96ff;
+      margin: 0.6rem 0;
+      font-weight: 400;
+      opacity: 0.85;
+    }
+
+    .input-container {
+      display: flex;
+      background: #09102f;
+      border-radius: 12px;
+      padding: 0.5rem;
+      gap: 0.5rem;
+      width: 100%;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(29, 78, 216, 0.1);
+    }
+
+    .input-container input {
+      border-radius: 8px 0 0 8px;
+      background: #d1dae6;
+      width: 100%;
+      flex-basis: 70%;
+      padding: 0.9rem;
+      border: none;
+      color: #070e20;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .input-container input:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(29, 78, 216, 0.5);
+      background: #e6f1ff;
+    }
+
+    .input-container button {
+      flex-basis: 30%;
+      padding: 0.9rem;
+      background: #1d4ed8;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #ffffff;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .input-container button:hover {
+      background: #2563eb;
+      box-shadow: 0 0 12px rgba(29, 78, 216, 0.4);
+    }
+
+    .input-container button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .input-container button:hover::before {
+      left: 100%;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    #waiting-message {
+      color: #7a96ff;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    #pair {
+      position: relative;
+    }
+
+    #pair a, #pair font {
+      color: #7a96ff;
+      transition: color 0.3s ease;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    #pair a:hover, #pair font:hover {
+      color: #1d4ed8;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .copy-tip {
+      color: #7a96ff;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      opacity: 0;
+      animation: fadeInTip 1s ease-out 0.5s forwards;
+    }
+
+    @keyframes fadeInTip {
+      0% { opacity: 0; }
+      100% { opacity: 0.85; }
+    }
+
+    .fa-user {
+      font-size: 1.6rem;
+      color: #1d4ed8;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 0 12px;
+      }
+
+      .box {
+        width: 100%;
+        max-width: none;
+      }
+
+      .input-container {
+        flex-direction: column;
+      }
+
+      .input-container input {
+        border-radius: 8px;
+        width: 100%;
+      }
+
+      .input-container button {
+        border-radius: 8px;
+        width: 100%;
+        padding: 1rem;
+      }
+
+      .centered-text {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main">
+      <div class="box" id="box">
+        <div id="text">
+          <i class="fa fa-user"></i>
+          <p>
+            <h3 class="centered-text">𝐁ᴜᴍʙʟᴇʙᴇᴇ-𝐗ᴍ𝐃 𝐏ᴀɪʀɪɴɢ</h3>
+            <h6>𝐁ʟᴀᴄᴋ-𝐓ᴀᴘᴘʏ</h6>
+            <h6>Enter Your Number with Country Code</h6>
+            <div class="input-container">
+              <input placeholder="254759000340" type="number" id="number" name="">
+              <button id="submit">𝐒ᴜʙᴍɪᴛ</button>
+            </div>
+            <a id="waiting-message" class="centered-text" style="display: none;">𝐏ʟᴇᴀꜱᴇ 𝐖ᴀɪᴛ 𝐀 𝐖ʜɪʟᴇ</a>
+            <br>
+            <br>
+            <main id="pair"></main>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script>
+    let a = document.getElementById("pair");
+    let b = document.getElementById("submit");
+    let c = document.getElementById("number");
+    let box = document.getElementById("box");
+
+    async function Copy() {
+      let text = document.getElementById("copy").innerText;
+      let obj = document.getElementById("copy");
+      await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
+      obj.innerText = "COPIED";
+      obj.style = "color:#1d4ed8;font-weight:bold";
+      obj.size = "5";
+      setTimeout(() => {
+        obj.innerText = text;
+        obj.style = "color:#7a96ff;font-weight:bold";
+        obj.size = "5";
+      }, 500);
+    }
+
+    b.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!c.value) {
+        a.innerHTML = '<a style="color:#b8c4d9;font-weight:bold">Enter your WhatsApp number with Country Code</a><br><br>';
+      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
+        a.innerHTML = '<a style="color:#22c55e;font-weight:bold">Invalid Number</a><br><br>';
+      } else {
+        const Toxic_Tech = c.value.replace(/[^0-9]/g, "");
+        let bb = "";
+        let bbc = "";
+        const cc = Toxic_Tech.split('');
+        cc.map(a => {
+          bbc += a;
+          if (bbc.length == 3) {
+            bb += " " + a;
+          } else if (bbc.length == 8) {
+            bb += " " + a;
+          } else {
+            bb += a;
+          }
+        });
+        c.type = "text";
+        c.value = "+" + bb;
+        c.style = "color:#070e20;font-size:20px";
+        a.innerHTML = '<a style="color:#b8c4d9;font-weight:bold">Please Wait...</a><br><br>';
+        let { data } = await axios(`/code?number=${Toxic_Tech}`);
+        let code = data.code || "Service Unavailable";
+        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:#dc2626;font-weight:bold" size="5">CODE: <span style="color:#b8c4d9;font-weight:bold">' + code + '</span></font><br><div class="copy-tip">Tap code to copy</div><br>';
+      }
+    });
+  </script>
+</body>
+</html>
