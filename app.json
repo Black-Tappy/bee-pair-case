@@ -2,7 +2,7 @@
     "name": "Bumblebee-XMD Pairing",
     "description": "Bumblebee-XMD WA bot, Created by Black-Tappy",
     "logo": "https://files.catbox.moe/og4tsk.jpg",
-    "repository": "https://github.com/xhclintohn/TOXIC-PAIR-CODE",
+    "repository": "https://github.com/Black-Tappy/bee-pair-case",
     "keywords": ["LegacyMd"],
     "success_url": "/", 
     "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
